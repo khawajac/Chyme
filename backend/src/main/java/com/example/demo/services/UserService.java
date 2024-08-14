@@ -20,7 +20,6 @@ public class UserService {
     }
 
     public User saveUser(User user) {
-        // Validate the user object if necessary
         validateUser(user);
         return userRepository.save(user);
     }
@@ -73,6 +72,5 @@ public class UserService {
         if (!StringUtils.hasText(user.getEmail()) || !user.getEmail().contains("@")) {
             throw new IllegalArgumentException("Invalid email address");
         }
-        // Add additional validation logic as needed
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.exceptions.UserNotFoundException;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,35 +30,29 @@ public class UserService {
     }
 
     public User updateUsername(Long id, String username) {
-        if (!StringUtils.hasText(username)) {
-            throw new IllegalArgumentException("Username cannot be empty or null.");
-        }
-        User user = getUserById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        validateUsername(username);
+        User user = getUserById(id).orElseThrow(() -> new UserNotFoundException(id));
         user.setUsername(username);
         return userRepository.save(user);
     }
 
     public User updateEmail(Long id, String email) {
-        if (!StringUtils.hasText(email) || !email.contains("@")) {
-            throw new IllegalArgumentException("Invalid email address.");
-        }
-        User user = getUserById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        validateEmail(email);
+        User user = getUserById(id).orElseThrow(() -> new UserNotFoundException(id));
         user.setEmail(email);
         return userRepository.save(user);
     }
 
     public User updatePassword(Long id, String password) {
-        if (!StringUtils.hasText(password)) {
-            throw new IllegalArgumentException("Password cannot be empty or null.");
-        }
-        User user = getUserById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        validatePassword(password);
+        User user = getUserById(id).orElseThrow(() -> new UserNotFoundException(id));
         user.setPassword(password);
         return userRepository.save(user);
     }
 
     public void deleteUser(Long id) {
         if (!userRepository.existsById(id)) {
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException(id);
         }
         userRepository.deleteById(id);
     }
@@ -66,11 +61,27 @@ public class UserService {
         if (user == null) {
             throw new IllegalArgumentException("User cannot be null");
         }
-        if (!StringUtils.hasText(user.getUsername())) {
-            throw new IllegalArgumentException("Username cannot be empty");
+        validateUsername(user.getUsername());
+        validateEmail(user.getEmail());
+        validatePassword(user.getPassword());
+    }
+
+    private void validateUsername(String username) {
+        if (!StringUtils.hasText(username)) {
+            throw new IllegalArgumentException("Username cannot be empty or null.");
         }
-        if (!StringUtils.hasText(user.getEmail()) || !user.getEmail().contains("@")) {
-            throw new IllegalArgumentException("Invalid email address");
+    }
+
+    private void validateEmail(String email) {
+        if (!StringUtils.hasText(email) || !email.contains("@")) {
+            throw new IllegalArgumentException("Invalid email address.");
+        }
+    }
+
+    private void validatePassword(String password) {
+        if (!StringUtils.hasText(password)) {
+            throw new IllegalArgumentException("Password cannot be empty or null.");
         }
     }
 }
+

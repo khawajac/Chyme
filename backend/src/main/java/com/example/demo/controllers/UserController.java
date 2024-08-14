@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.User;
+import com.example.demo.models.UserDTO;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,27 +36,27 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/username")
-    public ResponseEntity<User> updateUsername(@PathVariable Long id, @RequestBody String username) {
+    public ResponseEntity<User> updateUsername(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         try {
-            return ResponseEntity.ok(userService.updateUsername(id, username));
+            return ResponseEntity.ok(userService.updateUsername(id, userDTO.getUsername()));
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PatchMapping("/{id}/email")
-    public ResponseEntity<User> updateEmail(@PathVariable Long id, @RequestParam String email) {
+    public ResponseEntity<User> updateEmail(@PathVariable Long id, @RequestParam UserDTO userDTO) {
         try {
-            return ResponseEntity.ok(userService.updateEmail(id, email));
+            return ResponseEntity.ok(userService.updateEmail(id, userDTO.getEmail()));
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PatchMapping("/{id}/password")
-    public ResponseEntity<User> updatePassword(@PathVariable Long id, @RequestParam String password) {
+    public ResponseEntity<User> updatePassword(@PathVariable Long id, @RequestParam UserDTO userDTO) {
         try {
-            return ResponseEntity.ok(userService.updatePassword(id, password));
+            return ResponseEntity.ok(userService.updatePassword(id, userDTO.getPassword()));
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

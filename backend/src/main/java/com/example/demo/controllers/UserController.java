@@ -34,7 +34,7 @@ public class UserController {
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}/username")
+    @PatchMapping("/{id}/username")
     public ResponseEntity<User> updateUsername(@PathVariable Long id, @RequestParam String username) {
         try {
             return ResponseEntity.ok(userService.updateUsername(id, username));
@@ -43,7 +43,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{id}/email")
+    @PatchMapping("/{id}/email")
     public ResponseEntity<User> updateEmail(@PathVariable Long id, @RequestParam String email) {
         try {
             return ResponseEntity.ok(userService.updateEmail(id, email));
@@ -52,7 +52,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{id}/password")
+    @PatchMapping("/{id}/password")
     public ResponseEntity<User> updatePassword(@PathVariable Long id, @RequestParam String password) {
         try {
             return ResponseEntity.ok(userService.updatePassword(id, password));

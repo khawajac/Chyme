@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/username")
-    public ResponseEntity<User> updateUsername(@PathVariable Long id, @RequestParam String username) {
+    public ResponseEntity<User> updateUsername(@PathVariable Long id, @RequestBody String username) {
         try {
             return ResponseEntity.ok(userService.updateUsername(id, username));
         } catch (RuntimeException e) {

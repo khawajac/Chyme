@@ -34,12 +34,14 @@ Chyme is a backend application for a chatroom system designed to facilitate real
 - Message: Represents a message sent within a chatroom. Attributes include message content, timestamp, and sender.
 
 ### User Model
-Endpoints	URLs	Description
-GET	localhost:8080/users	Retrieve all users
-GET	localhost:8080/users/{id}	Retrieve user by ID
-POST	localhost:8080/users	Create a new user
-PUT	localhost:8080/users/{id}	Update user details
-DELETE	localhost:8080/users/{id}	Delete a user
+
+| Endpoints        | URLs           | Description  |
+| :-------------: |:-------------:| :-----:|
+|GET	| localhost:8080/users	| Retrieve all users|
+|GET |	localhost:8080/users/{id}	|Retrieve user by ID|
+|POST|	localhost:8080/users	| Create a new user|
+|PUT	|localhost:8080/users/{id}	|Update user details|
+|DELETE|	localhost:8080/users/{id}|	Delete a user|
 
 ### Chatroom Model
 Endpoints	URLs	Description

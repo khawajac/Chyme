@@ -43,22 +43,4 @@ Chyme is a backend application for a chatroom system designed to facilitate real
 |PUT	|localhost:8080/users/{id}	|Update user details|
 |DELETE|	localhost:8080/users/{id}|	Delete a user|
 
-### Chatroom Model
-Endpoints	URLs	Description
-GET	localhost:8080/chatrooms	Retrieve all chatrooms
-GET	localhost:8080/chatrooms/{id}	Retrieve chatroom by ID
-POST	localhost:8080/chatrooms	Create a new chatroom
-PUT	localhost:8080/chatrooms/{id}	Update chatroom details
-DELETE	localhost:8080/chatrooms/{id}	Delete a chatroom
-
-### Message Model
-Endpoints	URLs	Description
-GET	localhost:8080/messages	Retrieve all messages
-GET	localhost:8080/messages/{id}	Retrieve message by ID
-POST	localhost:8080/messages	Send a new message
-DELETE	localhost:8080/messages/{id}	Delete a message
-
-### WebSocket Endpoints
-Endpoints	URLs	Description
-CONNECT	ws://localhost:8080/chat	Connect to chatroom via WebSocket
 

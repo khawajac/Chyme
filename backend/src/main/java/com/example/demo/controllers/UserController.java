@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/email")
-    public ResponseEntity<User> updateEmail(@PathVariable Long id, @RequestParam UserDTO userDTO) {
+    public ResponseEntity<User> updateEmail(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         try {
             return ResponseEntity.ok(userService.updateEmail(id, userDTO.getEmail()));
         } catch (RuntimeException e) {
@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/password")
-    public ResponseEntity<User> updatePassword(@PathVariable Long id, @RequestParam UserDTO userDTO) {
+    public ResponseEntity<User> updatePassword(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         try {
             return ResponseEntity.ok(userService.updatePassword(id, userDTO.getPassword()));
         } catch (RuntimeException e) {

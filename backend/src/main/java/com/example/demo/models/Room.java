@@ -35,10 +35,6 @@ public class Room {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getRoomName() {
         return roomName;
     }

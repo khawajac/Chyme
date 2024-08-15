@@ -33,7 +33,7 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 - Room: Represents a chatroom where users can join and participate in conversations. Attributes include chatroom name, description, and list of users.
 - Message: Represents a message sent within a chatroom. Attributes include message content, timestamp, and sender.
 
-### User Model
+### User
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
@@ -43,7 +43,7 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 |PATCH	|localhost:8080/users/{id}	|Update user details|
 |DELETE|	localhost:8080/users/{id}|	Delete a user|
 
-### Room Model
+### Room
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
@@ -53,7 +53,7 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 |PATCH	|localhost:8080/rooms/{id}	|Update room details|
 |DELETE|	localhost:8080/rooms/{id}|	Delete a room|
 
-### Message Model
+### Message
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|

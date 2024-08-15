@@ -56,7 +56,7 @@ public class MessageService {
 
         // Create a new room if no existing room is found
         Room newRoom = new Room();
-        newRoom.setRoomName("Chat between" + sender.getUsername() + " and " + recipient.getUsername());
+        newRoom.setRoomName("Chat between " + sender.getUsername() + " and " + recipient.getUsername());
 
         return roomService.saveRoom(newRoom); 
     }

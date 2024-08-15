@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Message;
+import com.example.demo.models.MessageRequest;
 import com.example.demo.services.MessageService;
 import com.example.demo.services.RoomService;
 import com.example.demo.services.UserService;
@@ -9,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -27,11 +27,11 @@ public class MessageController {
 
     // Endpoint to send a message
     @PostMapping("/send")
-    public ResponseEntity<Message> sendMessage(@RequestParam Long senderId,
-                                               @RequestParam Long recipientId,
-                                               @RequestParam String content) {
+    public ResponseEntity<Message> sendMessage(@RequestBody MessageRequest messageRequest) {
         try {
-            Message message = messageService.sendMessage(senderId, recipientId, content);
+            Message message = messageService.sendMessage(messageRequest.getSenderId(),
+                    messageRequest.getRecipientId(),
+                    messageRequest.getContent());
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -39,7 +39,7 @@ public class MessageController {
     }
 
     // Endpoint to get all messages in a room
-    @GetMapping("/room/{roomId}")
+    @GetMapping("/{roomId}")
     public ResponseEntity<List<Message>> getMessagesByRoom(@PathVariable Long roomId) {
         try {
             List<Message> messages = messageService.getMessagesByRoom(roomId);

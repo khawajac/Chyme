@@ -20,7 +20,7 @@ public class Message {
     private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "room_id", nullable = false)
+    @JoinColumn(name = "room_id") // null initially, room should be created automatically
     private Room room;
 
     @Column(name="time_sent", nullable = false)

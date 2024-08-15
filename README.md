@@ -1,9 +1,9 @@
 # Chyme - Chatroom
-## URL
+## URL (TBC)
 
 ## Summary
 
-Chyme is a backend application for a chatroom system designed to facilitate real-time communication among users. It supports user registration, authentication, and chat management features. Users can create and join chatrooms, send and receive messages, and manage their profiles. The system is optimized for handling multiple concurrent users and ensuring secure communication.
+Chyme is an application for a chatroom system designed to facilitate real-time communication among users. It supports user registration, authentication and chat management features. Users can create and join chatrooms, send and receive messages and manage their profiles. The system is optimised for handling multiple users and ensuring secure communication.
 
 ## Backend Tech Stack
 
@@ -29,18 +29,36 @@ Chyme is a backend application for a chatroom system designed to facilitate real
 
 ### Models
 
-- User: Represents a user of the chatroom system. Attributes include username, email, password, and profile information.
-- Chatroom: Represents a chatroom where users can join and participate in conversations. Attributes include chatroom name, description, and list of users.
-- Message: Represents a message sent within a chatroom. Attributes include message content, timestamp, and sender.
+- User: Represents a user of the chatroom system. Attributes include username, email and password.
+- Room: Represents a chatroom where users can join and participate in conversations. Attributes include chatroom name and list of users.
+- Message: Represents a message sent within a chatroom. Attributes include message content, timestamp and sender.
 
-### User Model
+### User
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
 |GET	| localhost:8080/users	| Retrieve all users|
 |GET |	localhost:8080/users/{id}	|Retrieve user by ID|
 |POST|	localhost:8080/users	| Create a new user|
-|PUT	|localhost:8080/users/{id}	|Update user details|
+|PATCH	|localhost:8080/users/{id}	|Update user details|
 |DELETE|	localhost:8080/users/{id}|	Delete a user|
 
+### Room
+
+| Endpoints        | URLs           | Description  |
+| :-------------: |:-------------:| :-----:|
+|GET	| localhost:8080/rooms	| Retrieve all rooms|
+|GET |	localhost:8080/rooms/{id}	|Retrieve room by ID|
+|POST|	localhost:8080/rooms	| Create a new room|
+|PATCH	|localhost:8080/rooms/{id}	|Update room details|
+|DELETE|	localhost:8080/rooms/{id}|	Delete a room|
+
+### Message
+
+| Endpoints        | URLs           | Description  |
+| :-------------: |:-------------:| :-----:|
+|GET |	localhost:8080/messages/{id}	|Retrieve message by ID|
+|POST|	localhost:8080/messages	| Create a new message|
+|PATCH	|localhost:8080/messages/{id}	|Edit message details|
+|DELETE|	localhost:8080/messages/{id}|	Delete a message|
 

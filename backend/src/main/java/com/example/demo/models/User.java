@@ -2,6 +2,9 @@ package com.example.demo.models;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,6 +21,9 @@ public class User {
 
     @Column(name="password", nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserRoom> userRooms = new HashSet<>();
 
     public User(String username, String email, String password){
         this.username = username;
@@ -54,5 +60,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserRoom> getUserRooms() {
+        return userRooms;
+    }
+
+    public void setUserRooms(Set<UserRoom> userRooms) {
+        this.userRooms = userRooms;
     }
 }

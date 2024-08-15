@@ -19,13 +19,13 @@ public class Room {
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Message> messages = new HashSet<>();
 
-    @ManyToMany(mappedBy = "rooms")
-    private Set<User> users = new HashSet<>();
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserRoom> userRooms = new HashSet<>();
 
-    public Room(String roomName, Set<Message> messages, Set<User> users) {
+    public Room(String roomName, Set<Message> messages, Set<UserRoom> userRooms) {
         this.roomName = roomName;
         this.messages = messages;
-        this.users = users;
+        this.userRooms = userRooms;
     }
 
     public Room() {
@@ -51,12 +51,12 @@ public class Room {
         this.messages = messages;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<UserRoom> getUserRooms() {
+        return userRooms;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUserRooms(Set<UserRoom> userRooms) {
+        this.userRooms = userRooms;
     }
 }
 

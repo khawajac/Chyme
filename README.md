@@ -1,9 +1,9 @@
 # Chyme - Chatroom
-## URL
+## URL (TBC)
 
 ## Summary
 
-Chyme is a backend application for a chatroom system designed to facilitate real-time communication among users. It supports user registration, authentication, and chat management features. Users can create and join chatrooms, send and receive messages, and manage their profiles. The system is optimized for handling multiple concurrent users and ensuring secure communication.
+Chyme is an application for a chatroom system designed to facilitate real-time communication among users. It supports user registration, authentication, and chat management features. Users can create and join chatrooms, send and receive messages, and manage their profiles. The system is optimized for handling multiple concurrent users and ensuring secure communication.
 
 ## Backend Tech Stack
 

@@ -3,7 +3,7 @@
 
 ## Summary
 
-Chyme is an application for a chatroom system designed to facilitate real-time communication among users. It supports user registration, authentication, and chat management features. Users can create and join chatrooms, send and receive messages, and manage their profiles. The system is optimized for handling multiple concurrent users and ensuring secure communication.
+Chyme is an application for a chatroom system designed to facilitate real-time communication among users. It supports user registration, authentication and chat management features. Users can create and join chatrooms, send and receive messages and manage their profiles. The system is optimised for handling multiple users and ensuring secure communication.
 
 ## Backend Tech Stack
 
@@ -29,9 +29,9 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 
 ### Models
 
-- User: Represents a user of the chatroom system. Attributes include username, email, password, and profile information.
-- Room: Represents a chatroom where users can join and participate in conversations. Attributes include chatroom name, description, and list of users.
-- Message: Represents a message sent within a chatroom. Attributes include message content, timestamp, and sender.
+- User: Represents a user of the chatroom system. Attributes include username, email and password.
+- Room: Represents a chatroom where users can join and participate in conversations. Attributes include chatroom name and list of users.
+- Message: Represents a message sent within a chatroom. Attributes include message content, timestamp and sender.
 
 ### User
 

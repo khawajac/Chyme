@@ -39,7 +39,7 @@ public class MessageController {
     }
 
     // Endpoint to get all messages in a room
-    @GetMapping("/{roomId}")
+    @GetMapping("/room/{roomId}")
     public ResponseEntity<List<Message>> getMessagesByRoom(@PathVariable Long roomId) {
         try {
             List<Message> messages = messageService.getMessagesByRoom(roomId);

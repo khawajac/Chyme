@@ -18,21 +18,16 @@ public class RoomService {
     private RoomRepository roomRepository;
 
     @Autowired
-    UserRoomService userRoomService;
+    private UserRoomService userRoomService;
 
     public List<Room> getAllRooms(){
         return roomRepository.findAll();
     }
 
-    public Room saveRoom(Room room, User sender, User recipient) {
+    public Room saveRoom(Room room) {
         // Validate and save the room
         validateRoom(room);
-        Room savedRoom = roomRepository.save(room);
-        // Delegate user-room association to UserRoomService
-        userRoomService.addUserToRoom(sender, savedRoom);
-        userRoomService.addUserToRoom(recipient, savedRoom);
-
-        return savedRoom;
+        return roomRepository.save(room);
     }
 
     public Optional<Room> getRoomById(Long id){

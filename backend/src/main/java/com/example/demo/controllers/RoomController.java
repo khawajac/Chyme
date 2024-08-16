@@ -29,7 +29,7 @@ public class RoomController {
 
     @PostMapping
     public ResponseEntity<Room> createRoom(@RequestBody Room room, @RequestBody User sender, @RequestBody User recipient){
-        Room createdRoom = roomService.saveRoom(room, sender, recipient);
+        Room createdRoom = roomService.saveRoom(room);
         return new ResponseEntity<>(createdRoom, HttpStatus.CREATED);
     }
 

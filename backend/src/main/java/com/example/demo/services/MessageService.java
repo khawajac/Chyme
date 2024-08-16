@@ -31,8 +31,11 @@ public class MessageService {
     @Autowired
     private UserRepository userRepository;
 
+//    @Autowired
+//    private UserRoomService userRoomService;
+
     @Autowired
-    private UserRoomService userRoomService;
+    private UserRoomRepository userRoomRepository;
 
     public Message sendMessage(Long senderId, Long recipientId, String content) {
 
@@ -61,26 +64,19 @@ public class MessageService {
         // Create a new room if no existing room is found
         Room newRoom = new Room();
         newRoom.setRoomName("Chat between " + sender.getUsername() + " and " + recipient.getUsername());
-        return roomService.saveRoom(newRoom, sender, recipient);
+        Room savedRoom = roomService.saveRoom(newRoom);
 
+        // Create and save UserRoom entries for both users
+        userRoomRepository.save(new UserRoom(sender, savedRoom, LocalDateTime.now()));
+        userRoomRepository.save(new UserRoom(recipient, savedRoom, LocalDateTime.now()));
+
+        return savedRoom;
     }
 
     // Check if a room exists between the two users
     private Room findExistingRoomBetweenUsers(User sender, User recipient) {
-        Set<UserRoom> senderRooms = sender.getUserRooms();
-        Set<UserRoom> recipientRooms = recipient.getUserRooms();
-
-        // Find a room that both users share
-        for (UserRoom senderRoom : senderRooms) {
-            for (UserRoom recipientRoom : recipientRooms) {
-                if (senderRoom.getRoom().equals(recipientRoom.getRoom())) {
-                    return senderRoom.getRoom();  // They share a room
-                }
-            }
-        }
-
-        // No shared room found
-        return null;
+        return userRoomRepository.findCommonRoomBetweenUsers(sender.getId(), recipient.getId())
+                .orElse(null);
     }
 
     public Optional<Message> getMessageById(Long id) {

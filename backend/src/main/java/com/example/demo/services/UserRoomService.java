@@ -41,7 +41,7 @@ public class UserRoomService {
         }
     }
 
-    public Set<Room> getSpecificUsersRooms(Long id) {
+    public List<Room> getSpecificUsersRooms(Long id) {
         return userRoomRepository.findRoomsByUserId(id);
     }
 

@@ -27,6 +27,8 @@ public class RoomController {
         return roomService.getRoomById(id).map(room -> new ResponseEntity<>(room, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/{id}/users")
+
     @PostMapping
     public ResponseEntity<Room> createRoom(@RequestBody Room room, @RequestBody User sender, @RequestBody User recipient){
         Room createdRoom = roomService.saveRoom(room);

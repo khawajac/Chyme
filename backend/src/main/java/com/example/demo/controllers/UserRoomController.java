@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.UserRoom;
+import com.example.demo.repositories.UserRoomRepository;
 import com.example.demo.services.UserRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,10 @@ import java.util.Set;
 public class UserRoomController {
 
     @Autowired
-    UserRoomService userRoomService;
+    private UserRoomRepository userRoomRepository;
+
+    @Autowired
+    private UserRoomService userRoomService;
 
 
 //    // Endpoint to get specific user rooms by user ID
@@ -29,11 +33,10 @@ public class UserRoomController {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 //        }
 //    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsersRoom(@PathVariable Long id) {
+    @DeleteMapping("/{userId}/rooms/{roomId}")
+    public ResponseEntity<Void> removeUserFromRoom(@PathVariable Long userId, @PathVariable Long roomId){
         try {
-            userRoomService.deleteUserRoom(id);
+            userRoomService.removeUserFromRoom(userId, roomId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

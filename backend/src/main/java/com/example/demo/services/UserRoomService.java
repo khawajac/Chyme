@@ -45,11 +45,13 @@ public class UserRoomService {
         return userRoomRepository.findRoomsByUserId(id);
     }
 
-    public void deleteUserRoom(Long id) {
-        // Find the UserRoom entry by ID
-        UserRoom userRoom = userRoomRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("UserRoom not found"));
-        // Delete the UserRoom entry
-        userRoomRepository.delete(userRoom);
+    public void removeUserFromRoom(Long userId, Long roomId) {
+        Optional<UserRoom> userRoomOptional = userRoomRepository.findByUserIdAndRoomId(userId, roomId);
+        if (userRoomOptional.isPresent()) {
+            UserRoom userRoom = userRoomOptional.get();
+            userRoomRepository.delete(userRoom);
+        } else {
+            throw new RuntimeException("User or Room not found");
+        }
     }
 }

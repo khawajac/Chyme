@@ -22,4 +22,10 @@ public interface UserRoomRepository extends JpaRepository<UserRoom, Long> {
 
     // Find all rooms associated with a specific user
     Set<Room> findRoomsByUserId(Long userId);
+
+    // Find a room by Room ID and User ID
+    Optional<UserRoom> findByUserIdAndRoomId(Long userId, Long roomId);
+
+
+
 }

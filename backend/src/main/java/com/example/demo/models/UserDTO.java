@@ -1,18 +1,22 @@
 package com.example.demo.models;
 
+import java.util.List;
+
 public class UserDTO {
     private String username;
     private String email;
     private String password;
+    private List<RoomDTO> usersRooms;
 
     public UserDTO() {
 
     }
 
-    public UserDTO(String username, String email, String password) {
+    public UserDTO(String username, String email, String password, List<RoomDTO> usersRooms) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.usersRooms = usersRooms;
     }
 
     public String getUsername() {
@@ -37,5 +41,13 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<RoomDTO> getUsersRooms() {
+        return usersRooms;
+    }
+
+    public void setUsersRooms(List<RoomDTO> usersRooms) {
+        this.usersRooms = usersRooms;
     }
 }

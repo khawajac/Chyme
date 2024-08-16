@@ -7,6 +7,7 @@ import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.MessageRepository;
 import com.example.demo.repositories.RoomRepository;
 import com.example.demo.repositories.UserRepository;
+import com.example.demo.repositories.UserRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,9 @@ public class MessageService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserRoomService userRoomService;
 
     public Message sendMessage(Long senderId, Long recipientId, String content) {
 
@@ -57,8 +61,8 @@ public class MessageService {
         // Create a new room if no existing room is found
         Room newRoom = new Room();
         newRoom.setRoomName("Chat between " + sender.getUsername() + " and " + recipient.getUsername());
+        return roomService.saveRoom(newRoom, sender, recipient);
 
-        return roomService.saveRoom(newRoom); 
     }
 
     // Check if a room exists between the two users

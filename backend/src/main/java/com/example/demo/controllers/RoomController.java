@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Room;
 import com.example.demo.models.RoomDTO;
+import com.example.demo.models.User;
 import com.example.demo.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,8 @@ public class RoomController {
     }
 
     @PostMapping
-    public ResponseEntity<Room> createRoom(@RequestBody Room room){
-        Room createdRoom = roomService.saveRoom(room);
+    public ResponseEntity<Room> createRoom(@RequestBody Room room, @RequestBody User sender, @RequestBody User recipient){
+        Room createdRoom = roomService.saveRoom(room, sender, recipient);
         return new ResponseEntity<>(createdRoom, HttpStatus.CREATED);
     }
 

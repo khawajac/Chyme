@@ -2,6 +2,8 @@ package com.example.demo.services;
 
 import com.example.demo.exceptions.RoomNotFoundException;
 import com.example.demo.models.Room;
+import com.example.demo.models.User;
+import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +17,22 @@ public class RoomService {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    UserRoomService userRoomService;
+
     public List<Room> getAllRooms(){
         return roomRepository.findAll();
     }
 
-    public Room saveRoom(Room room) {
+    public Room saveRoom(Room room, User sender, User recipient) {
+        // Validate and save the room
         validateRoom(room);
-        return roomRepository.save(room);
+        Room savedRoom = roomRepository.save(room);
+        // Delegate user-room association to UserRoomService
+        userRoomService.addUserToRoom(sender, savedRoom);
+        userRoomService.addUserToRoom(recipient, savedRoom);
+
+        return savedRoom;
     }
 
     public Optional<Room> getRoomById(Long id){

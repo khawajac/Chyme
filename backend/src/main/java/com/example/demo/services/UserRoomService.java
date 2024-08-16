@@ -19,15 +19,11 @@ public class UserRoomService {
     @Autowired
     UserService userService;
 
-    public List<UserRoom> findAllUsersRooms(){
+    public List<UserRoom> getAllUsersRooms(){
         return userRoomRepository.findAll();
     }
 
-    public Optional<UserRoom> findUserRoomById(Long id) {
-        return userRoomRepository.findById(id);
-    }
-
-    public Optional<Set<UserRoom>> findSpecificUsersRooms(Long id){
+    public Optional<Set<UserRoom>> getSpecificUsersRooms(Long id){
         Optional<User> optionalUser = userService.getUserById(id);
         if(optionalUser.isPresent()){
             Set<UserRoom> usersRoom = optionalUser.get().getUserRooms();

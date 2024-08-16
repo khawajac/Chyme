@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,9 +18,11 @@ public class Room {
     private String roomName;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<Message> messages = new HashSet<>();
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<UserRoom> userRooms = new HashSet<>();
 
     public Room(String roomName, Set<Message> messages, Set<UserRoom> userRooms) {
@@ -58,4 +62,3 @@ public class Room {
         this.userRooms = userRooms;
     }
 }
-

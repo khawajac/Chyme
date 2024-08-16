@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,8 @@ public class Message {
     private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "room_id", nullable = false)
+    @JoinColumn(name = "room_id") // null initially, room should be created automatically
+    @JsonBackReference
     private Room room;
 
     @Column(name="time_sent", nullable = false)

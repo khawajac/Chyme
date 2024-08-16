@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.models.Room;
+import com.example.demo.models.RoomDTO;
 import com.example.demo.models.User;
 import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.UserRepository;
@@ -41,7 +42,7 @@ public class UserRoomService {
         }
     }
 
-    public List<Room> getSpecificUsersRooms(Long id) {
+    public List<RoomDTO> getSpecificUsersRooms(Long id) {
         return userRoomRepository.findRoomsByUserId(id);
     }
 

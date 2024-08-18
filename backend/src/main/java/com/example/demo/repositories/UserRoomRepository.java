@@ -1,6 +1,7 @@
 package com.example.demo.repositories;
 
 import com.example.demo.models.Room;
+import com.example.demo.models.RoomDTO;
 import com.example.demo.models.User;
 import com.example.demo.models.UserRoom;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 public interface UserRoomRepository extends JpaRepository<UserRoom, Long> {
 
@@ -22,10 +23,13 @@ public interface UserRoomRepository extends JpaRepository<UserRoom, Long> {
     boolean existsByUserAndRoom(User user, Room room);
 
     // Find all rooms associated with a specific user
-    List<Room> findRoomsByUserId(Long userId);
+    List<RoomDTO> findRoomsByUserId(Long userId);
 
     // Find a room by Room ID and User ID
     Optional<UserRoom> findByUserIdAndRoomId(Long userId, Long roomId);
+
+    List<UserRoom> findByRoomId(Long roomId);
+
 
 
 

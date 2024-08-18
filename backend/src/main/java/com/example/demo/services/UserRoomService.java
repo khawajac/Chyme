@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.models.Room;
+import com.example.demo.models.RoomDTO;
 import com.example.demo.models.User;
 import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.UserRepository;
@@ -29,6 +30,11 @@ public class UserRoomService {
         return userRoomRepository.findAll();
     }
 
+    // Method to get UserRoom associations by roomId
+    public List<UserRoom> getUserRoomsByRoomId(Long roomId) {
+        return userRoomRepository.findByRoomId(roomId);
+    }
+
     // Method to associate a user with a room
     public void addUserToRoom(User user, Room room) {
         // Check if the UserRoom relationship already exists
@@ -41,7 +47,7 @@ public class UserRoomService {
         }
     }
 
-    public List<Room> getSpecificUsersRooms(Long id) {
+    public List<RoomDTO> getSpecificUsersRooms(Long id) {
         return userRoomRepository.findRoomsByUserId(id);
     }
 

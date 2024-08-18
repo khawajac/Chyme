@@ -2,6 +2,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Room;
+import com.example.demo.models.RoomDTO;
 import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.UserRoomRepository;
 import com.example.demo.services.UserRoomService;
@@ -26,9 +27,9 @@ public class UserRoomController {
 
 
     // Endpoint to get specific user rooms by user ID
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Room>> getSpecificUsersRoom(@PathVariable Long id){
-        Optional<List<Room>> specificUsersRooms = Optional.ofNullable(userRoomService.getSpecificUsersRooms(id));
+    @GetMapping("users/{id}")
+    public ResponseEntity<List<RoomDTO>> getSpecificUsersRoom(@PathVariable Long id){
+        Optional<List<RoomDTO>> specificUsersRooms = Optional.ofNullable(userRoomService.getSpecificUsersRooms(id));
         return specificUsersRooms.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }
 

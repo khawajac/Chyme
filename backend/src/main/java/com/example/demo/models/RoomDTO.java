@@ -1,17 +1,18 @@
 package com.example.demo.models;
 
-import java.util.Set;
+import java.util.List;
 
-public class RoomDTO{
+public class RoomDTO {
 
     private String roomName;
+    private List<UserDTO> users;
 
-    public RoomDTO(){
-
+    public RoomDTO() {
     }
 
-    public RoomDTO(String roomName, Set<Message> messages, Set<User> users) {
+    public RoomDTO(String roomName, List<UserDTO> users) {
         this.roomName = roomName;
+        this.users = users;
     }
 
     public String getRoomName() {
@@ -21,5 +22,13 @@ public class RoomDTO{
     public void setRoomName(String roomName) {
         this.roomName = roomName;
     }
+    
 
+    public List<UserDTO> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserDTO> users) {
+        this.users = users;
+    }
 }

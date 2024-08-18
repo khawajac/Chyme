@@ -1,18 +1,15 @@
 package com.example.demo.services;
 
 import com.example.demo.models.Room;
-import com.example.demo.models.RoomDTO;
 import com.example.demo.models.User;
 import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.repositories.UserRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserRoomService {
@@ -20,17 +17,10 @@ public class UserRoomService {
     @Autowired
     UserRoomRepository userRoomRepository;
 
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    UserRepository userRepository;
-
     public List<UserRoom> getAllUsersRooms(){
         return userRoomRepository.findAll();
     }
 
-    // Method to get UserRoom associations by roomId
     public List<UserRoom> getUserRoomsByRoomId(Long roomId) {
         return userRoomRepository.findByRoomId(roomId);
     }
@@ -46,7 +36,6 @@ public class UserRoomService {
             userRoomRepository.save(userRoom);
         }
     }
-
 
     public void removeUserFromRoom(Long userId, Long roomId) {
         Optional<UserRoom> userRoomOptional = userRoomRepository.findByUserIdAndRoomId(userId, roomId);

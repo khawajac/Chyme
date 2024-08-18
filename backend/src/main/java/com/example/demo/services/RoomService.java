@@ -27,7 +27,6 @@ public class RoomService {
     }
 
     public Room saveRoom(Room room) {
-        // Validate and save the room
         validateRoom(room);
         return roomRepository.save(room);
     }

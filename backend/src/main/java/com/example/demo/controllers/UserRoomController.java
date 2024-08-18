@@ -26,13 +26,6 @@ public class UserRoomController {
     private UserRoomService userRoomService;
 
 
-    // Endpoint to get specific user rooms by user ID
-    @GetMapping("users/{id}")
-    public ResponseEntity<List<RoomDTO>> getSpecificUsersRoom(@PathVariable Long id){
-        Optional<List<RoomDTO>> specificUsersRooms = Optional.ofNullable(userRoomService.getSpecificUsersRooms(id));
-        return specificUsersRooms.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
-    }
-
     @DeleteMapping("/{userId}/rooms/{roomId}")
     public ResponseEntity<Void> removeUserFromRoom(@PathVariable Long userId, @PathVariable Long roomId){
         try {

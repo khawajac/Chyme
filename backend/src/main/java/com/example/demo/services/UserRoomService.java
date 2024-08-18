@@ -47,9 +47,6 @@ public class UserRoomService {
         }
     }
 
-    public List<RoomDTO> getSpecificUsersRooms(Long id) {
-        return userRoomRepository.findRoomsByUserId(id);
-    }
 
     public void removeUserFromRoom(Long userId, Long roomId) {
         Optional<UserRoom> userRoomOptional = userRoomRepository.findByUserIdAndRoomId(userId, roomId);

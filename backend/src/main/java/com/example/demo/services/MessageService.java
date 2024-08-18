@@ -10,11 +10,9 @@ import com.example.demo.repositories.UserRepository;
 import com.example.demo.repositories.UserRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class MessageService {
@@ -30,9 +28,6 @@ public class MessageService {
 
     @Autowired
     private UserRepository userRepository;
-
-//    @Autowired
-//    private UserRoomService userRoomService;
 
     @Autowired
     private UserRoomRepository userRoomRepository;

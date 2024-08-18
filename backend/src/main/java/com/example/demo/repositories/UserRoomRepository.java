@@ -14,16 +14,13 @@ import java.util.Optional;
 
 public interface UserRoomRepository extends JpaRepository<UserRoom, Long> {
 
-    @Query("SELECT ur1.room FROM UserRoom ur1 " +
-            "JOIN UserRoom ur2 ON ur1.room.id = ur2.room.id " +
-            "WHERE ur1.user.id = :user1Id AND ur2.user.id = :user2Id")
-    Optional<Room> findCommonRoomBetweenUsers(@Param("user1Id") Long user1Id, @Param("user2Id") Long user2Id);
+    @Query("SELECT sender.room FROM UserRoom sender " +
+            "JOIN UserRoom recipient ON sender.room.id = recipient.room.id " +
+            "WHERE sender.user.id = :senderId AND recipient.user.id = :recipientId")
+    Optional<Room> findCommonRoomBetweenUsers(@Param("senderId") Long senderId, @Param("recipientId") Long recipientId);
 
     // Check if a UserRoom entry exists for a specific user and room
     boolean existsByUserAndRoom(User user, Room room);
-
-    // Find all rooms associated with a specific user
-    List<RoomDTO> findRoomsByUserId(Long userId);
 
     // Find a room by Room ID and User ID
     Optional<UserRoom> findByUserIdAndRoomId(Long userId, Long roomId);

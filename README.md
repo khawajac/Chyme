@@ -68,7 +68,7 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
-|Delete	| localhost:8080/user-room/{userId}/rooms/{roomId}	| Deletes a user from a room|
+|Delete	| localhost:8080/user-room/{userId}/rooms/{roomId}	| Delete a user from a room|
 
 
 

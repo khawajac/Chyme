@@ -1,5 +1,4 @@
 # Chyme - Chatroom
-## URL (TBC)
 
 ## Summary
 
@@ -10,7 +9,11 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 - **Java**
 - **Spring Boot**
 - **PostgreSQL**
-- **WebSocket** (for real-time communication)
+
+## Technologies Used
+
+- **WebSocket** (IN PROGRESS)
+- **Docker** (IN PROGRESS)
 
 ## How to Run This Locally
 

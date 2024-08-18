@@ -30,6 +30,11 @@ public class UserRoomService {
         return userRoomRepository.findAll();
     }
 
+    // Method to get UserRoom associations by roomId
+    public List<UserRoom> getUserRoomsByRoomId(Long roomId) {
+        return userRoomRepository.findByRoomId(roomId);
+    }
+
     // Method to associate a user with a room
     public void addUserToRoom(User user, Room room) {
         // Check if the UserRoom relationship already exists

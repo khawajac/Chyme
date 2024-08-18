@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.exceptions.RoomNotFoundException;
 import com.example.demo.models.Room;
 import com.example.demo.models.User;
+import com.example.demo.models.UserDTO;
 import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomService {
@@ -32,6 +34,14 @@ public class RoomService {
 
     public Optional<Room> getRoomById(Long id){
         return roomRepository.findById(id);
+    }
+
+    public List<String> getUsernamesByRoomId(Long roomId){
+        Optional<Room> room = roomRepository.findById(roomId);
+
+        List<UserRoom> userRoom = userRoomService.getUserRoomsByRoomId(roomId);
+
+        return userRoom.stream().map(usersRoom -> usersRoom.getUser().getUsername()).collect(Collectors.toList());
     }
 
     public Room updateRoomName(Long id, String roomName){

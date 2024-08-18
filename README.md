@@ -40,8 +40,16 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 |GET	| localhost:8080/users	| Retrieve all users|
 |GET |	localhost:8080/users/{id}	|Retrieve user by ID|
 |POST|	localhost:8080/users	| Create a new user|
-|PATCH	|localhost:8080/users/{id}	|Update user details|
+|PATCH	|localhost:8080/users/{id}/username	|Update user details|
 |DELETE|	localhost:8080/users/{id}|	Delete a user|
+
+### Message
+
+| Endpoints        | URLs           | Description  |
+| :-------------: |:-------------:| :-----:|
+|GET |	localhost:8080/messages/{id}	|Retrieve message by ID|
+|GET |	localhost:8080/messages/room/{id}	|Retrieve all messages in a room by ID|
+|POST|	localhost:8080/messages	| Create a new message|
 
 ### Room
 
@@ -49,16 +57,15 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 | :-------------: |:-------------:| :-----:|
 |GET	| localhost:8080/rooms	| Retrieve all rooms|
 |GET |	localhost:8080/rooms/{id}	|Retrieve room by ID|
-|POST|	localhost:8080/rooms	| Create a new room|
+|GET |	localhost:8080/rooms/{id}/users	|Retrieve all users in a room by ID|
 |PATCH	|localhost:8080/rooms/{id}	|Update room details|
 |DELETE|	localhost:8080/rooms/{id}|	Delete a room|
 
-### Message
+### UserRoom
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
-|GET |	localhost:8080/messages/{id}	|Retrieve message by ID|
-|POST|	localhost:8080/messages	| Create a new message|
-|PATCH	|localhost:8080/messages/{id}	|Edit message details|
-|DELETE|	localhost:8080/messages/{id}|	Delete a message|
+|Delete	| localhost:8080/user-room/{userId}/rooms/{roomId}	| Deletes a user from a room|
+
+
 

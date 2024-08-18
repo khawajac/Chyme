@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.exceptions.UserNotFoundException;
 import com.example.demo.models.Message;
 import com.example.demo.models.Room;
 import com.example.demo.models.User;
@@ -35,8 +36,8 @@ public class MessageService {
     public Message sendMessage(Long senderId, Long recipientId, String content) {
 
         // Fetch sender and recipient users
-        User sender = userRepository.findById(senderId).orElseThrow();
-        User recipient = userRepository.findById(recipientId).orElseThrow();
+        User sender = userRepository.findById(senderId).orElseThrow(() -> new UserNotFoundException(senderId));
+        User recipient = userRepository.findById(recipientId).orElseThrow(() -> new UserNotFoundException(recipientId));
 
         // Find or create a room
         Room room = findOrCreateRoom(sender, recipient);

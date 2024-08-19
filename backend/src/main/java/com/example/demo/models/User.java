@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @Builder
@@ -9,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,15 +27,5 @@ public class User {
     @Setter
     @Column(name="password", nullable = false)
     private String password;
-
-
-//    public User(String username, String email, String password){
-//        this.username = username;
-//        this.email = email;
-//        this.password = password;
-//    }
-//
-//    public User() {
-//    }
 
 }

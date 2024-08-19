@@ -1,7 +1,10 @@
 package com.example.demo.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 @Entity
 @Table(name = "users")
 public class User {
@@ -10,12 +13,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Setter
     @Column(name ="username", unique = true, nullable = false)
     private String username;
 
+    @Setter
     @Column(name ="email", unique = true, nullable = false)
     private String email;
 
+    @Setter
     @Column(name="password", nullable = false)
     private String password;
 
@@ -29,31 +35,4 @@ public class User {
     public User() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

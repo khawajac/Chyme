@@ -16,7 +16,7 @@ public class UserRoom {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "chatroom_id", nullable = false)
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
     @Column(name = "joined_at", nullable = false)

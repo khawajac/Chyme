@@ -1,10 +1,12 @@
 package com.example.demo.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -26,13 +28,13 @@ public class User {
     private String password;
 
 
-    public User(String username, String email, String password){
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
-    public User() {
-    }
+//    public User(String username, String email, String password){
+//        this.username = username;
+//        this.email = email;
+//        this.password = password;
+//    }
+//
+//    public User() {
+//    }
 
 }

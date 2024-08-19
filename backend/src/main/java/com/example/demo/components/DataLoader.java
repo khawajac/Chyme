@@ -19,10 +19,10 @@ public class DataLoader implements ApplicationRunner {
 
         //Creating some users for the database, they should be able to create a Room with each other and send messages to each other
 
-        User kiwi = new User("ornerykiwi", "kiwi@gmail.com", "ilovekiwis");
-        userService.saveUser(kiwi);
-        User bagel = new User ("cerealbagel", "bagel@gmail.com", "ilovebagels");
-        userService.saveUser(bagel);
+//        User kiwi = new User("ornerykiwi", "kiwi@gmail.com", "ilovekiwis");
+//        userService.saveUser(kiwi);
+//        User bagel = new User ("cerealbagel", "bagel@gmail.com", "ilovebagels");
+//        userService.saveUser(bagel);
     }
 
 

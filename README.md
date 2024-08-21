@@ -14,7 +14,7 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 - **PostgreSQL**
 
 ## Technologies Used
-- JsonWebToken
+- **JsonWebToken**
 - **WebSocket** (IN PROGRESS)
 - **Docker** (IN PROGRESS)
 

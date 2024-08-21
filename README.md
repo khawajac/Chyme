@@ -4,6 +4,9 @@
 
 Chyme is an application for a chatroom system designed to facilitate real-time communication among users. It supports user registration, authentication and chat management features. Users can create and join chatrooms, send and receive messages and manage their profiles. The system is optimised for handling multiple users and ensuring secure communication.
 
+## Frontend Tech Stack
+- **React Typescript**
+
 ## Backend Tech Stack
 
 - **Java**

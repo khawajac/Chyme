@@ -43,7 +43,7 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
-~~|GET	| localhost:8080/users	| Retrieve all users|~~
+~~|~~GET	| localhost:8080/users	| Retrieve all users~~|
 |GET |	localhost:8080/users/{id}	|Retrieve user by ID|
 |POST|	localhost:8080/users	| Create a new user|
 |PATCH	|localhost:8080/users/{id}/username	|Update user details|

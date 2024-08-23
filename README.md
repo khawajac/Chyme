@@ -39,15 +39,20 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 - Room: Represents a chatroom where users can join and participate in conversations. Attributes include chatroom name and list of users.
 - Message: Represents a message sent within a chatroom. Attributes include message content, timestamp and sender.
 
+### User Authentication/Registration
+
+| Endpoints        | URLs           | Description  |
+| :-------------: |:-------------:| :-----:|
+|POST | localhost:8080/auth/authenticateN|Authenticate user sign in|
+|POST	|localhost:8080/auth/register	|A new user can register and be created|
+
 ### User
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
-~~|~~GET	| localhost:8080/users	| Retrieve all users~~|
+|~~GET~~	|~~localhost:8080/users~~| ~~Retrieve all users~~|
 |GET |	localhost:8080/users/{id}	|Retrieve user by ID|
-|POST|	localhost:8080/users	| Create a new user|
 |PATCH	|localhost:8080/users/{id}/username	|Update user details|
-|DELETE|	localhost:8080/users/{id}|	Delete a user|
 
 ### Message
 
@@ -61,8 +66,8 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
-~~|GET	| localhost:8080/rooms	| Retrieve all rooms|~~
-|GET |	localhost:8080/rooms/{id}	|Retrieve room by ID|
+|~~GET~~	|~~localhost:8080/rooms~~	|~~Retrieve all rooms~~|
+|~~GET~~ |~~localhost:8080/rooms/{id}~~	|~~Retrieve room by ID~~|
 |GET |	localhost:8080/rooms/{id}/users	|Retrieve all users in a room by ID|
 |PATCH	|localhost:8080/rooms/{id}	|Update room details|
 |DELETE|	localhost:8080/rooms/{id}|	Delete a room|
@@ -71,7 +76,8 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
-|Delete	| localhost:8080/user-room/{userId}/rooms/{roomId}	| Delete a user from a room|
+|GET	| localhost:8080/user-room/{userId}/rooms	| Get all a users rooms|
+|DELETE	| localhost:8080/user-room/{userId}/rooms/{roomId}	| Delete a user from a room|
 
 
 

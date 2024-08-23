@@ -43,41 +43,9 @@ Chyme is an application for a chatroom system designed to facilitate real-time c
 
 | Endpoints        | URLs           | Description  |
 | :-------------: |:-------------:| :-----:|
-|POST | localhost:8080/auth/authenticateN|Authenticate user sign in|
+|POST | localhost:8080/auth/authenticate|Authenticate user sign in|
 |POST	|localhost:8080/auth/register	|A new user can register and be created|
 
-### User
-
-| Endpoints        | URLs           | Description  |
-| :-------------: |:-------------:| :-----:|
-|~~GET~~	|~~localhost:8080/users~~| ~~Retrieve all users~~|
-|GET |	localhost:8080/users/{id}	|Retrieve user by ID|
-|PATCH	|localhost:8080/users/{id}/username	|Update user details|
-
-### Message
-
-| Endpoints        | URLs           | Description  |
-| :-------------: |:-------------:| :-----:|
-|GET |	localhost:8080/messages/{id}	|Retrieve message by ID|
-|GET |	localhost:8080/messages/room/{id}	|Retrieve all messages in a room by ID|
-|POST|	localhost:8080/messages	| Create a new message|
-
-### Room
-
-| Endpoints        | URLs           | Description  |
-| :-------------: |:-------------:| :-----:|
-|~~GET~~	|~~localhost:8080/rooms~~	|~~Retrieve all rooms~~|
-|~~GET~~ |~~localhost:8080/rooms/{id}~~	|~~Retrieve room by ID~~|
-|GET |	localhost:8080/rooms/{id}/users	|Retrieve all users in a room by ID|
-|PATCH	|localhost:8080/rooms/{id}	|Update room details|
-|DELETE|	localhost:8080/rooms/{id}|	Delete a room|
-
-### UserRoom
-
-| Endpoints        | URLs           | Description  |
-| :-------------: |:-------------:| :-----:|
-|GET	| localhost:8080/user-room/{userId}/rooms	| Get all a users rooms|
-|DELETE	| localhost:8080/user-room/{userId}/rooms/{roomId}	| Delete a user from a room|
 
 
 

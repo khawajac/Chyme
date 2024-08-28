@@ -1,28 +1,46 @@
 package com.example.demo.components;
 
 
+import com.example.demo.models.Role;
 import com.example.demo.models.User;
+import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
-    UserService userService;
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public void run (ApplicationArguments args) throws Exception {
 
-        //Creating some users for the database, they should be able to create a Room with each other and send messages to each other
+        //Creating admin user for the database
 
-        User kiwi = new User("ornerykiwi", "kiwi@gmail.com", "ilovekiwis");
-        userService.saveUser(kiwi);
-        User bagel = new User ("cerealbagel", "bagel@gmail.com", "ilovebagels");
-        userService.saveUser(bagel);
+        User ornerykiwi = User.builder()
+                .username("ornerykiwi")
+                .email("ornerykiwi@gmail.com")
+                .password(passwordEncoder.encode("ilovekiwis"))
+                .role(Role.USER)
+                .build();
+        userRepository.save(ornerykiwi);
+
+        User cerealbagel = User.builder()
+                .username("cerealbagel")
+                .email("bagel@outlook.com")
+                .password(passwordEncoder.encode("ilovebagels"))
+                .role(Role.USER)
+                .build();
+        userRepository.save(cerealbagel);
+
     }
 
 

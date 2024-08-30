@@ -3,7 +3,6 @@ package com.example.demo.services;
 import com.example.demo.models.Room;
 import com.example.demo.models.User;
 import com.example.demo.models.UserRoom;
-import com.example.demo.repositories.UserRepository;
 import com.example.demo.repositories.UserRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

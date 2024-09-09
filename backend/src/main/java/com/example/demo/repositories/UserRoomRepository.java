@@ -27,6 +27,9 @@ public interface UserRoomRepository extends JpaRepository<UserRoom, Long> {
 
     List<UserRoom> findByRoomId(Long roomId);
 
+    List<UserRoom> findByUserId(Long userId);
+
+
 
 
 

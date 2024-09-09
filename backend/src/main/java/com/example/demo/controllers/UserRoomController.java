@@ -2,7 +2,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Room;
-import com.example.demo.models.RoomDTO;
 import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.UserRoomRepository;
 import com.example.demo.services.RoomService;
@@ -13,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController

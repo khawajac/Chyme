@@ -1,12 +1,18 @@
+import ChatContainer from './containers/ChatContainer';
 import LogIn from './containers/LogIn'; 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-      <LogIn/>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/dashboard" element={<ChatContainer/>}></Route>
+        {/* Other routes */}
+      </Routes>
+    </Router>
+  );
+};
+
 
 export default App

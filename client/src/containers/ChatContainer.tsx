@@ -24,10 +24,11 @@ const ChatContainer: React.FC = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-        const response = await fetch('/usersrooms/{userId}/rooms', {
+        const token = localStorage.getItem('token'); 
+        const response = await fetch("http://localhost:8080/user-room/{userId}/rooms", {
           headers: {
             'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
           },
         });
 
@@ -47,34 +48,6 @@ const ChatContainer: React.FC = () => {
     fetchRooms();
   }, []);
 
-  useEffect(() => {
-    if (selectedRoomId !== null) {
-      const fetchMessages = async () => {
-        setLoadingMessages(true);
-        try {
-          const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-          const response = await fetch(`/api/your-endpoint/rooms/${selectedRoomId}/messages`, {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-            },
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            setMessages(data);
-          } else {
-            console.error('Failed to fetch messages');
-          }
-        } catch (error) {
-          console.error('Error fetching messages:', error);
-        } finally {
-          setLoadingMessages(false);
-        }
-      };
-
-      fetchMessages();
-    }
-  }, [selectedRoomId]);
 
   const handleSelectRoom = (roomId: number) => {
     setSelectedRoomId(roomId);
@@ -83,8 +56,8 @@ const ChatContainer: React.FC = () => {
 
   const handleSendMessage = async (content: string) => {
     try {
-      const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-      const response = await fetch('/api/messages/send', {
+      const token = localStorage.getItem('token'); 
+      const response = await fetch('http://localhost:8080/messages/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

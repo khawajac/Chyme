@@ -2,6 +2,8 @@ package com.example.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,11 +21,13 @@ public class Message {
     @JoinColumn(name = "sender_id", nullable = false)
     private User sender;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "room_id") // null initially, room should be created automatically
     @JsonBackReference
     private Room room;
 
+    @Setter
     @Column(name="time_sent", nullable = false)
     private LocalDateTime timeStamp;
 
@@ -45,31 +49,16 @@ public class Message {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public User getSender() {
         return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
     }
 
     public Room getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
     public LocalDateTime getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
-    }
 }

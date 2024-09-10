@@ -1,4 +1,5 @@
 import React from 'react';
+import "../App.css"
 
 interface Room {
   id: number;
@@ -13,19 +14,27 @@ interface ConversationsTabProps {
 
 const ConversationsTab: React.FC<ConversationsTabProps> = ({ rooms, loading, onSelectRoom }) => {
   if (loading) {
-    return <div>Loading conversations...</div>;
+    return <div className="loading">Loading conversations...</div>;
   }
 
   return (
-    <div>
+    <div className="conversations-tab">
       <h2>Your Conversations</h2>
-      <ul>
-        {rooms.map((room) => (
-          <li key={room.id} onClick={() => onSelectRoom(room.id)}>
-            {room.name}
-          </li>
-        ))}
-      </ul>
+      {rooms.length === 0 ? (
+        <p>No conversations found.</p>
+      ) : (
+        <ul className="room-list">
+          {rooms.map((room) => (
+            <li 
+              key={room.id} 
+              onClick={() => onSelectRoom(room.id)}
+              className="room-item"
+            >
+              {room.name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -62,6 +62,8 @@ const ChatContainer: React.FC = () => {
     setMessages([]); // Clear messages when a new room is selected
   };
 
+  console.log('Rooms in ChatContainer:', rooms); 
+
   const handleSendMessage = async (content: string) => {
     try {
       const token = localStorage.getItem('token');

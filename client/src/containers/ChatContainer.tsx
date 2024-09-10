@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ConversationsTab from '../components/ConversationsTab.tsx';
-import ChatRoom from '../components/ChatRoom.tsx';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import ConversationsTab from '../components/ConversationsTab';
+import ChatRoom from '../components/ChatRoom';
 
 interface Room {
   id: number;
@@ -15,17 +17,25 @@ interface Message {
 }
 
 const ChatContainer: React.FC = () => {
+  const userId = useSelector((state: RootState) => state.user.id);
+  console.log(userId); 
   const [rooms, setRooms] = useState<Room[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
   const [loadingRooms, setLoadingRooms] = useState<boolean>(true);
   const [loadingMessages, setLoadingMessages] = useState<boolean>(false);
 
+
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const token = localStorage.getItem('token'); 
-        const response = await fetch("http://localhost:8080/user-room/{userId}/rooms", {
+        const token = localStorage.getItem('token');
+        if (!userId) {
+          console.error('User ID is missing');
+          return;
+        }
+
+        const response = await fetch(`http://localhost:8080/user-room/${userId}/rooms`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -47,8 +57,7 @@ const ChatContainer: React.FC = () => {
     };
 
     fetchRooms();
-  }, []);
-
+  }, [userId]);
 
   const handleSelectRoom = (roomId: number) => {
     setSelectedRoomId(roomId);
@@ -57,7 +66,7 @@ const ChatContainer: React.FC = () => {
 
   const handleSendMessage = async (content: string) => {
     try {
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:8080/messages/send', {
         method: 'POST',
         headers: {

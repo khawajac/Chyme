@@ -29,6 +29,7 @@ const ChatContainer: React.FC = () => {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
+            "Accept": "application/json",
           },
         });
 
@@ -62,6 +63,7 @@ const ChatContainer: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
+          "Accept": "application/json",
         },
         body: JSON.stringify({
           roomId: selectedRoomId,

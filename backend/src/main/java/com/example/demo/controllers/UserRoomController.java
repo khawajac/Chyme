@@ -38,19 +38,14 @@ public class UserRoomController {
                     .map(UserRoom::getRoom)
                     .collect(Collectors.toList());
 
-            // Check if the list of rooms is empty
             if (rooms.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-
-            // Return the list of rooms with a 200 OK status
             return new ResponseEntity<>(rooms, HttpStatus.OK);
         } catch (Exception e) {
-            // Handle any exceptions and return a 500 Internal Server Error
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
     @DeleteMapping("/{userId}/rooms/{roomId}")
     public ResponseEntity<Void> removeUserFromRoom(@PathVariable Long userId, @PathVariable Long roomId){

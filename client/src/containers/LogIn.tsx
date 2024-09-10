@@ -38,7 +38,7 @@ const LogIn: React.FC = () => {
       localStorage.setItem('token', token); 
     
       // Then, fetch the user details using the token
-      const userResponse = await fetch(`http://localhost:8080/users/${userId}`, {
+      const userResponse = await fetch(`http://localhost:8080/users/me`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

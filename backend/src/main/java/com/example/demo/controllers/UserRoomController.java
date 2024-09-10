@@ -2,13 +2,16 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Room;
+import com.example.demo.models.User;
 import com.example.demo.models.UserRoom;
 import com.example.demo.repositories.UserRoomRepository;
 import com.example.demo.services.RoomService;
 import com.example.demo.services.UserRoomService;
+import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,16 +30,17 @@ public class UserRoomController {
     @Autowired
     RoomService roomService;
 
-    @GetMapping("/{userId}/rooms")
-    public ResponseEntity<List<Room>> getAllUsersRooms(@PathVariable Long userId) {
-        try {
-            // Retrieve the list of UserRoom entities for the given userId
-            List<UserRoom> userRooms = userRoomService.getRoomsByUserId(userId);
+    @Autowired
+    UserService userService;
 
-            // Extract the Room objects from the UserRoom entities
-            List<Room> rooms = userRooms.stream()
-                    .map(UserRoom::getRoom)
-                    .collect(Collectors.toList());
+    @GetMapping("/rooms")
+    public ResponseEntity<List<UserRoom>> getCurrentUserRooms(Authentication authentication) {
+        try {
+            String username = authentication.getName();
+            User currentUser = userService.getUserByUsername(username)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            List<UserRoom> rooms = userRoomService.getRoomsByUserId(currentUser.getId());
 
             if (rooms.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

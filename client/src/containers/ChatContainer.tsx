@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
 import ConversationsTab from '../components/ConversationsTab';
 import ChatRoom from '../components/ChatRoom';
 
@@ -17,8 +15,6 @@ interface Message {
 }
 
 const ChatContainer: React.FC = () => {
-  const userId = useSelector((state: RootState) => state.user.id);
-  console.log(userId); 
   const [rooms, setRooms] = useState<Room[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
@@ -30,12 +26,13 @@ const ChatContainer: React.FC = () => {
     const fetchRooms = async () => {
       try {
         const token = localStorage.getItem('token');
-        if (!userId) {
-          console.error('User ID is missing');
+        console.log(token); 
+        if (!token) {
+          console.error('No token found');
           return;
         }
 
-        const response = await fetch(`http://localhost:8080/user-room/${userId}/rooms`, {
+        const response = await fetch(`http://localhost:8080/user-room/rooms`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -45,6 +42,7 @@ const ChatContainer: React.FC = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data); 
           setRooms(data);
         } else {
           console.error('Failed to fetch rooms');
@@ -57,7 +55,7 @@ const ChatContainer: React.FC = () => {
     };
 
     fetchRooms();
-  }, [userId]);
+  }, []);
 
   const handleSelectRoom = (roomId: number) => {
     setSelectedRoomId(roomId);
@@ -70,8 +68,8 @@ const ChatContainer: React.FC = () => {
       const response = await fetch('http://localhost:8080/messages/send', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
           "Accept": "application/json",
         },
         body: JSON.stringify({

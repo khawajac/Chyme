@@ -23,7 +23,8 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/register", "/auth/authenticate").permitAll() // Publicly accessible endpoints
+                .requestMatchers("/auth/**").permitAll() // Publicly accessible endpoints
+                .requestMatchers("/users/me", "user-room/rooms/**").authenticated() // Explicitly allow authenticated access
                 .anyRequest().authenticated() // All other endpoints require authentication
                 .and()
                 .sessionManagement()

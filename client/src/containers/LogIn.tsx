@@ -3,11 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import LogInForm from '../components/LogInForm';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/userSlice';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
 
 const LogIn: React.FC = () => {
-  const userId = useSelector((state: RootState) => state.user.id);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +50,7 @@ const LogIn: React.FC = () => {
       }
 
       const user = await userResponse.json();
-      console.log(user); // Log the user object for debugging
+      console.log(user); 
 
       // Dispatch the user information to the Redux store
       dispatch(setUser(user));

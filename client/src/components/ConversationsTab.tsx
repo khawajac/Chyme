@@ -3,7 +3,11 @@ import "../App.css"
 
 interface Room {
   id: number;
-  name: string;
+  joinedAt: string;
+  room: {
+    id: number;
+    roomName: string;
+  }
 }
 
 interface ConversationsTabProps {
@@ -30,7 +34,7 @@ const ConversationsTab: React.FC<ConversationsTabProps> = ({ rooms, loading, onS
               onClick={() => onSelectRoom(room.id)}
               className="room-item"
             >
-              {room.name}
+              {room.room.roomName}
             </li>
           ))}
         </ul>

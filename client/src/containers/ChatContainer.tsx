@@ -4,7 +4,11 @@ import ChatRoom from '../components/ChatRoom';
 
 interface Room {
   id: number;
-  name: string;
+  joinedAt: string;
+  room: {
+    id: number;
+    roomName: string;
+  }
 }
 
 interface Message {

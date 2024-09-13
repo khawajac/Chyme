@@ -8,14 +8,24 @@ interface Room {
   room: {
     id: number;
     roomName: string;
-  }
+  };
+  user: {
+    id: number;
+    username: string;
+  };
+}
+
+interface User {
+  id: number;
+  username: string;
+  email: string;
 }
 
 interface Message {
   id: number;
-  senderId: number;
   content: string;
-  timestamp: string;
+  sender: number;
+  timeStamp: string;
 }
 
 const ChatContainer: React.FC = () => {
@@ -24,7 +34,6 @@ const ChatContainer: React.FC = () => {
   const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
   const [loadingRooms, setLoadingRooms] = useState<boolean>(true);
   const [loadingMessages, setLoadingMessages] = useState<boolean>(false);
-
 
   useEffect(() => {
     const fetchRooms = async () => {

@@ -1,19 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
 
+interface User {
+  id: number;
+  username: string;
+  email: string;
+}
+
 interface Message {
   id: number;
-  senderId: number;
   content: string;
-  timestamp: string;
+  sender: User;
+  timeStamp: string;
 }
 
 interface ChatRoomProps {
-  messages: Message[] | Message | null;
+  messages: Message[];
   loading: boolean;
   onSendMessage: (content: string) => void;
+  currentUserId: number | null;
 }
 
-const ChatRoom: React.FC<ChatRoomProps> = ({ messages, loading, onSendMessage }) => {
+const ChatRoom: React.FC<ChatRoomProps> = ({ messages, loading, onSendMessage, currentUserId }) => {
   const [newMessage, setNewMessage] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -38,19 +45,18 @@ const ChatRoom: React.FC<ChatRoomProps> = ({ messages, loading, onSendMessage })
   if (loading) {
     return <div>Loading messages...</div>;
   }
-  const messageArray = messages ? (Array.isArray(messages) ? messages : [messages]) : [];
 
   return (
     <div className="chat-room">
       <h2>Chat Room</h2>
       <div className="message-list" style={{ height: '400px', overflowY: 'auto', marginBottom: '20px' }}>
-        {messageArray.length === 0 ? (
+        {messages.length === 0 ? (
           <div>No messages available</div>
         ) : (
-          messageArray.map((message) => (
-            <div key={message.id} className={`message ${message.senderId === 1 ? 'sent' : 'received'}`}>
-              <strong>{message.senderId === 1 ? 'You' : 'Them'}:</strong> {message.content}
-              <small className="timestamp">{new Date(message.timestamp).toLocaleTimeString()}</small>
+          messages.map((message) => (
+            <div key={message.id} className={`message ${message.sender.id === currentUserId ? 'sent' : 'received'}`}>
+              <strong>{message.sender.username}:</strong> {message.content}
+              <small className="timestamp">{new Date(message.timeStamp).toLocaleString()}</small>
             </div>
           ))
         )}

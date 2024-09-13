@@ -63,12 +63,46 @@ const ChatContainer: React.FC = () => {
 
   const handleSelectRoom = (roomId: number) => {
     setSelectedRoomId(roomId);
-    setMessages([]); // Clear messages when a new room is selected
   };
 
   console.log('Rooms in ChatContainer:', rooms); 
 
+  useEffect(() => {
+    const fetchMessages = async () => {
+      if (selectedRoomId) {
+        setLoadingMessages(true);
+        setMessages([]); // Clear messages while loading
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`http://localhost:8080/messages/${selectedRoomId}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            setMessages(Array.isArray(data) ? data : [data]);
+          } else {
+            console.error('Failed to fetch messages');
+            setMessages([]); 
+          }
+        } catch (error) {
+          console.error('Error fetching messages:', error);
+          setMessages([]); 
+        } finally {
+          setLoadingMessages(false);
+        }
+      }
+    }
+    fetchMessages();
+  }, [selectedRoomId]);
+
   const handleSendMessage = async (content: string) => {
+    if (!selectedRoomId) return;
+    
     try {
       const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:8080/messages/send', {
@@ -86,7 +120,13 @@ const ChatContainer: React.FC = () => {
 
       if (response.ok) {
         const sentMessage = await response.json();
-        setMessages((prevMessages) => [...prevMessages, sentMessage]);
+        setMessages((prevMessages) => 
+          Array.isArray(prevMessages) 
+            ? [...prevMessages, sentMessage] 
+            : prevMessages 
+              ? [prevMessages, sentMessage] 
+              : [sentMessage]
+        );
       } else {
         console.error('Failed to send message');
       }

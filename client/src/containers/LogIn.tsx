@@ -51,11 +51,7 @@ const LogIn: React.FC = () => {
 
       const user = await userResponse.json();
       console.log(user); 
-
-      // Dispatch the user information to the Redux store
       dispatch(setUser(user));
-
-      // Redirect the user to the dashboard or home page after successful login
       navigate('/dashboard');
     } catch (error) {
       console.error('Error:', error);

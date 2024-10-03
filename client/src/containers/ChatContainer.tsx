@@ -22,13 +22,55 @@ interface Message {
   timeStamp: string;
 }
 
+interface User {
+  id: number;
+  username: string;
+}
+
 const ChatContainer: React.FC = () => {
   const [rooms, setRooms] = useState<Room[]>([]);
+  const [users, setUsers] = useState<User[]>([]); 
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null); 
   const [loadingRooms, setLoadingRooms] = useState<boolean>(true);
   const [loadingMessages, setLoadingMessages] = useState<boolean>(false);
+  const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
+  const [newMessageContent, setNewMessageContent] = useState<string>('');
+  const [showNewMessageWindow, setShowNewMessageWindow] = useState<boolean>(false);
+
+
+  const fetchAllUsers = async () => {
+    setLoadingUsers(true); 
+    try {
+        const token = localStorage.getItem('token');
+        console.log(token); 
+        if (!token) {
+          console.error('No token found');
+          return;
+        }
+        const response = await fetch(`http://localhost:8080/users`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          "Accept": "application/json"
+        }
+      }); 
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data); 
+        setUsers(data); 
+    } else {
+      console.error('Failed to fetch users'); 
+    }
+
+  } catch (error) {
+    console.error('Failed to fetch users'); 
+  } finally {
+    setLoadingUsers(false)
+  }
+}
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -39,7 +81,6 @@ const ChatContainer: React.FC = () => {
           console.error('No token found');
           return;
         }
-
         const response = await fetch(`http://localhost:8080/user-room/rooms`, {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -65,11 +106,9 @@ const ChatContainer: React.FC = () => {
     fetchRooms();
   }, []);
 
-  // creating a new message
-  const handleNewMessage = (userId: number) => {
-
-    setSelectedUserId(userId); 
-
+  const openNewMessageWindow = () => {
+    setShowNewMessageWindow(true);
+    fetchAllUsers(); 
   }
 
   const handleSelectRoom = (roomId: number) => {

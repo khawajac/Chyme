@@ -15,12 +15,6 @@ interface Room {
   };
 }
 
-interface User {
-  id: number;
-  username: string;
-  email: string;
-}
-
 interface Message {
   id: number;
   content: string;
@@ -32,6 +26,7 @@ const ChatContainer: React.FC = () => {
   const [rooms, setRooms] = useState<Room[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null); 
   const [loadingRooms, setLoadingRooms] = useState<boolean>(true);
   const [loadingMessages, setLoadingMessages] = useState<boolean>(false);
 
@@ -69,6 +64,13 @@ const ChatContainer: React.FC = () => {
 
     fetchRooms();
   }, []);
+
+  // creating a new message
+  const handleNewMessage = (userId: number) => {
+
+    setSelectedUserId(userId); 
+
+  }
 
   const handleSelectRoom = (roomId: number) => {
     setSelectedRoomId(roomId);
@@ -164,6 +166,7 @@ const ChatContainer: React.FC = () => {
           <div>Please select a conversation to start chatting.</div>
         )}
       </div>
+      <button type='button' onClick={handleNewMessage}>New Chatroom</button>
     </div>
   );
 };

@@ -18,16 +18,6 @@ public class RoomController {
     @Autowired
     RoomService roomService;
 
-    @GetMapping
-    public ResponseEntity<List<Room>> getAllRooms() {
-        return ResponseEntity.ok(roomService.getAllRooms());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Room> getRoomById(@PathVariable Long id){
-        return roomService.getRoomById(id).map(room -> new ResponseEntity<>(room, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
     @GetMapping("/{roomId}/users")
     public ResponseEntity<List<String>> getUsernamesByRoomId(@PathVariable Long roomId) {
         Optional<Room> optionalRoom = roomService.getRoomById(roomId);
@@ -40,12 +30,6 @@ public class RoomController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(usernames, HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<Room> createRoom(@RequestBody Room room, @RequestBody User sender, @RequestBody User recipient){
-        Room createdRoom = roomService.saveRoom(room);
-        return new ResponseEntity<>(createdRoom, HttpStatus.CREATED);
     }
 
     @PatchMapping("/{id}/roomName")

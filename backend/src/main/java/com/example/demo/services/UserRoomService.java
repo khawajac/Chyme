@@ -20,10 +20,14 @@ public class UserRoomService {
         return userRoomRepository.findAll();
     }
 
+
     public List<UserRoom> getUserRoomsByRoomId(Long roomId) {
         return userRoomRepository.findByRoomId(roomId);
     }
 
+    public List<UserRoom> getRoomsByUserId(Long userId) {
+        return userRoomRepository.findByUserId(userId);
+    }
     // Method to associate a user with a room
     public void addUserToRoom(User user, Room room) {
         // Check if the UserRoom relationship already exists

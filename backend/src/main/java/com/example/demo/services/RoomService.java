@@ -35,6 +35,7 @@ public class RoomService {
         return roomRepository.findById(id);
     }
 
+
     public List<String> getUsernamesByRoomId(Long roomId){
         Optional<Room> room = roomRepository.findById(roomId);
 
